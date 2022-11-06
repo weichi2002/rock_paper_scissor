@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap');
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    gap: 30px;
+    color: rgba(255, 255, 255, 0.654);
+    background-color: black;
+    font-family: 'Montserrat', sans-serif;
+
+    .rules{
+        font-size: 200%;
+    }
+
+    button{
+        font-family: 'Montserrat', sans-serif;
+        color: rgba(255, 255, 255, 0.764);
+        background-color: black;
+        border-radius: 20px;
+        border: 1px dashed white;
+        font-size: 120%;
+
+        &:hover{
+            transform: scale(1.1);
+            transition: 0.2s ease all;
+        }
+    }
+
+    .container{
+        padding: 2em 2em;
+        display: flex;
+        column-gap: 30px;
+    }
+
+    .scores-container{
+        margin-right: 50px;
+        font-size: 140%;
+
+    }
+
+    .results{
+        color: yellow;
+        font-size: 120%;
+        margin-right: 25px;
+
+       
+        .playerChoose, .cpuChoose{
+            margin-top: 10px;
+        }
+    
+
+        
+   
+    }
+}

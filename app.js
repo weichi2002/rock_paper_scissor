@@ -1,78 +1,67 @@
 
+let playerChoice = "";
+let computerChoice = "";
+let playerScore = 0;
+let computerScore = 0;
+let message = "";
+const optionBtn = document.querySelectorAll("div.container button");
+
+optionBtn.forEach(button => { button.addEventListener('click', handleClick)});
+document.querySelector(".restart").addEventListener('click',() => location.reload());
+
+function handleClick(e){
+    playerChoice  = e.target.className;
+    console.log(`player chooses ${playerChoice}`);
+    play(playerChoice);
+}
+
+function play(player){
+
+    computerChoice = computer_choice();
+    document.querySelector(".cpuChoose").innerHTML = `Computer Chooses: ${computerChoice}`;
+    document.querySelector(".playerChoose").innerHTML = `Player Chooses: ${playerChoice}`;
+
+    console.log("computer chooses " + computerChoice);
+
+    if(player == computerChoice){
+        message = "Tie!!!";
+    }
+    else if(player == "rock" && computerChoice == "scissors"
+    || player == "paper" && computerChoice == "rock"
+    || player == "scissors" && computerChoice == "paper"){
+        playerScore++;
+        message = "You win!!!";
+    }
+    else{
+        computerScore++;
+        message = "Computer Wins"
+    }
+
+    //update the score board
+    document.querySelector(".message").innerHTML = `Result: ${message}`;
+    document.querySelector(".computerScore").innerHTML = `Computer Score: ${computerScore}`;
+    document.querySelector(".playerScore").innerHTML = `Player Score:  ${playerScore}`;
+
+    //check if the computer or the player reached 5
+    if(playerScore == 5 || computerScore == 5){
+        optionBtn.forEach(button => {
+            button.removeEventListener('click', handleClick);
+        });
+
+    }
+}
+
 function computer_choice(){
     let choice = Math.floor(Math.random() * 3) + 1
-
     switch(choice){
         case 1: 
-            return "Rock"
+            return "rock";
         case 2:
-            return "Paper"
+            return "scissors";
         case 3:
-            return "Scissor"
+            return "paper";
     }
-
 }
 
-function player_choice(){
-
-    let choice = prompt("Enter choice: ");
-
-    if(choice.toUpperCase()=="ROCK" || choice.toUpperCase() =="R"){
-        return "Rock"
-    }
-    if(choice.toUpperCase() == "SCISSOR" || choice.toUpperCase() == "S"){
-        return "Scissor"
-    }
-        
-    if(choice.toUpperCase() == "PAPER" || choice.toUpperCase() == "P"){
-        return "Paper"
-    }
-    else{
-        return "Invalid Choice"
-    }
-
-}
-
-function Game(){
-
-    let player = player_choice();
-    let computer= computer_choice();
 
 
-    if(player == computer){
-        return "Tie!!"
-    }
-
-    if(player == "Rock"){
-        if(computer == "Paper"){
-            return "You Lose"
-        }
-        else{
-            return "You Win!!!"
-        }
-    }
-    if(player == "Paper"){
-        if(computer == "Scissor"){
-            return "You Lose"
-        }
-        else{
-            return "You Win!!!"
-        }
-    }
-    if(player == "Scissor"){
-        if(computer == "Rock"){
-            return "You Lose"
-        }
-        else{
-            return "You Win!!!"
-        }
-    }
-    else{
-        return player
-    }
-
-}
-
-for(let i = 0; i < 5; i++) {
-    alert(Game())
-}
